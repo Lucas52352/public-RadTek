@@ -5,10 +5,10 @@ import { UserModel } from "models/user";
 
 const userRouter = Router();
 
-userRouter.get('/user', requiresAuth(), (req: Request, res: Response) => {
+// userRouter.get('/user', requiresAuth(), (req: Request, res: Response) => {
     
-  res.send(req.oidc.user);
-});
+// res.send(req.oidc.user);
+// });
 userRouter.get('/users', /* getAllUsers */);
 userRouter.get('/users/:id', /*getOneUser */);
 
