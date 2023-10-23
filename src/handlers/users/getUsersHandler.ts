@@ -1,11 +1,12 @@
-// import { Request, Response } from "express";
-// export const login = async (req: Request, res: Response) => {
-//     const { email, password } = req.body;
-//     try {
-//         const response = await loginUser( email, password)
+import { Request, Response } from "express";
+import { allUsers } from "../../controllers/usersContollers/getAllUsers";
+ export const getAllUsers = async (req: Request, res: Response) => {
+     
+     try {
+         const response = await allUsers();
 
-//         res.status(200).json(response)
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// }
+         res.status(200).json(response)
+     } catch (error) {
+         res.status(400).json({ error: error.message });
+     }
+ }
