@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
-const tokenLifetime = 2
+// const tokenLifetime = 2
 
 export const loginController = async (email: string, password: string) => {
     const userFound = await UserModel.findOne({ email })
@@ -18,18 +18,8 @@ export const loginController = async (email: string, password: string) => {
                 admin: userFound.admin,
                 id: userFound._id
             },
-        }, process.env.TOKEN_SECRET,
-        {
-            expiresIn: tokenLifetime
-        }
+        }, process.env.TOKEN_SECRET
         )
-
-        const previousToken = accesToken; // Implementa esta función para obtener el token anterior
-        const newToken = generateAccessToken(userFound.id);
-        
-        console.log('Token anterior:', previousToken);
-        console.log('Nuevo token:', newToken);
-        
 
         return accesToken
     } else {
@@ -39,20 +29,20 @@ export const loginController = async (email: string, password: string) => {
 }
 
 
-function generateAccessToken(userId: string) {
-    const payload = { userId };
-    const options = { expiresIn: tokenLifetime };
-    return jwt.sign(payload, process.env.TOKEN_SECRET , options);
-  }
+// function generateAccessToken(userId: string) {
+//     const payload = { userId };
+//     const options = { expiresIn: tokenLifetime };
+//     return jwt.sign(payload, process.env.TOKEN_SECRET , options);
+//   }
 
-function renewToken() {
-    const accessToken = generateAccessToken('usuario_id'); // Cambia 'usuario_id' por el ID de tu usuario actual
-    console.log('Token renovado:', accessToken);
+// function renewToken() {
+//     const accessToken = generateAccessToken('usuario_id'); // Cambia 'usuario_id' por el ID de tu usuario actual
+//     console.log('Token renovado:', accessToken);
   
-    // Configura el temporizador para la próxima renovación en 2 minutos
-    setTimeout(renewToken, tokenLifetime * 1000);
-  }
+//     // Configura el temporizador para la próxima renovación en 2 minutos
+//     setTimeout(renewToken, tokenLifetime * 1000);
+//   }
   
-  renewToken() 
+//   renewToken() 
 
   

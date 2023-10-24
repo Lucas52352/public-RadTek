@@ -1,14 +1,19 @@
-import { getProductById } from "controllers/productsControllers/getProductById"
-import { current } from "handlers/users/currentHandler"
-import Product, { IProduct } from "models/products"
-import { UserModel } from "models/user"
+import Product, { IProduct } from "../../models/products";
+import { UserModel } from "../../models/user"
 
-export const postCartController = async (product: IProduct) => {
+export const postCartController = async (userId: string, productBody: IProduct) => {
 
-    const productToCart = getProductById(product._id)
+    console.log(userId)
 
+    const oneProduct = await Product.findOne({ _id: productBody._id }).exec();
 
-    console.log(productToCart)
+    const oneUser = await UserModel.findOneAndUpdate({
+        _id: userId
+    },
+        {
+            $push: { cart: oneProduct._id }
+        }
+    ).populate('cart')
 
-    return cartProduct
+    return oneUser
 }
