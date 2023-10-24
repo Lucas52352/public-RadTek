@@ -8,10 +8,6 @@ import { deleteTheUser } from "../handlers/users/deleteUserHandler";
 
 const userRouter = Router();
 
-// userRouter.get('/user', requiresAuth(), (req: Request, res: Response) => {
-    
-// res.send(req.oidc.user);
-// });s
 userRouter.get('/users',  getAllUsers);
 userRouter.get('/users/current', validateToken, current);
 userRouter.post('/users/register', register);
