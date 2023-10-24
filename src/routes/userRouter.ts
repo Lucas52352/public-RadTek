@@ -13,6 +13,6 @@ userRouter.get('/users/current', validateToken, current);
 userRouter.post('/users/register', register);
 userRouter.post('/users/login', login);
 userRouter.delete('/users/:id', deleteTheUser);
-userRouter.post('/users/login',validateToken, login);
+
 
 export default userRouter;
