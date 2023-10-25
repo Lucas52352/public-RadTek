@@ -1,7 +1,17 @@
-// import { UserModel } from "../../models/user"
+import Product, { IProduct } from "../../models/products"
+import { UserModel } from "../../models/user"
 
-// export const deleteCartController = async (userId: string, productId: string) => {
-//     const currentCartUser = await (await UserModel.findOne({ _id: userId })).populate('cart')
+export const deleteCartController = async (userId: string, product: IProduct) => {
+    
+    const productDeleted = await  Product.findOne({ _id: product._id })
 
-//     return currentCartUser
-// }
+    const updated= await  UserModel.findOneAndUpdate({
+        _id: userId
+    },
+        {
+            $pull: { cart: productDeleted._id }
+        },
+        {new: true}
+    ).populate('cart')
+    return updated
+}
