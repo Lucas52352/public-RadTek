@@ -11,7 +11,8 @@ export const createProduct = async (product: IProduct) => {
         color: product.color,
         description: product.description,
         brand: product.brand,
-        stock: product.stock
+        stock: product.stock,
+        cartQuantity: product.cartQuantity
     })
 
     console.log(newProduct, 'product created')
