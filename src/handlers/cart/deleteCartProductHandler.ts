@@ -2,7 +2,7 @@ import { deleteCartController } from "../../controllers/cartControllers/deleteCa
 import { Request, Response } from "express"
 
 export const deleteCartProduct = async (req: Request, res: Response) => {
-    const  product  = req.body;
+    const product = req.body;
     const userId = req.user.id
     try {
         const productDeleted = await deleteCartController(userId, product);
