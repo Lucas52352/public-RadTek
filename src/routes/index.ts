@@ -8,7 +8,7 @@ export const router = Router();
 
 router.use('/', userRouter);
 router.use('/', productRouter);
-router.use(validateToken);
+router.use(validateToken); //middleware (protect la ruta del carrito)
 router.use('/', cartRouter);
 
 export default router
