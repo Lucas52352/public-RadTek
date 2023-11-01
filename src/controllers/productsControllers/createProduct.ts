@@ -17,7 +17,7 @@ export const createProduct = async (product: IProduct) => {
 
     console.log(newProduct, 'product created')
 
-    if(newProduct.id || newProduct.name) throw new Error(`This product already exists:  ${newProduct.name}`)
+    if (newProduct.id || newProduct.name) throw new Error(`This product already exists:  ${newProduct.name}`)
 
     await newProduct.save();
     return [newProduct, 'Product created successfully'];

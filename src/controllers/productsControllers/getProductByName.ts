@@ -2,9 +2,11 @@ import Product from "../../models/products";
 
 export const getProductByName = async (name: string) => {
     try {
-        const oneProduct = await Product.find({ name: {
-            $regex: name
-        }}).exec();
+        const oneProduct = await Product.find({
+            name: {
+                $regex: name
+            }
+        }).exec();
 
         console.log(oneProduct, 'controller');
 
