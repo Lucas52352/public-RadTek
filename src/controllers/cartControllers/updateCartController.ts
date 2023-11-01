@@ -13,7 +13,7 @@ export const updateCartController = async (userId: string, productId: string, ca
         }
 
         const updated = await UserModel.findOneAndUpdate(
-            { _id: userId, 'cart._id': productId},
+            { _id: userId, 'cart._id': productId },
             {
                 $set: { "cart.$.cartQuantity": cartQuantity }
             },

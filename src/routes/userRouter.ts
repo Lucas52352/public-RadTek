@@ -8,7 +8,7 @@ import { deleteTheUser } from "../handlers/users/deleteUserHandler";
 
 const userRouter = Router();
 
-userRouter.get('/users',  getAllUsers);
+userRouter.get('/users', getAllUsers);
 userRouter.get('/users/current', validateToken, current);
 userRouter.post('/users/register', register);
 userRouter.post('/users/login', login);
