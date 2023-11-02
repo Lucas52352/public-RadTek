@@ -11,7 +11,13 @@ export const postCartController = async (userId: string, productBody: IProduct) 
         _id: userId
     },
         {
-            $push: { cart: oneProduct._id }
+            $push: {
+                cart: {
+
+                    id: oneProduct._id,
+                    cartQuantity: 0
+                }
+            }
         },
         { new: true }
     ).populate('cart')
