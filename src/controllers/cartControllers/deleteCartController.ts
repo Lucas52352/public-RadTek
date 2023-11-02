@@ -9,7 +9,7 @@ export const deleteCartController = async (userId: string, product: IProduct) =>
         _id: userId
     },
         {
-            $pull: { cart: productDeleted._id }
+            $pull: { cart: { _id: productDeleted._id } }
         },
         { new: true }
     ).populate('cart')
