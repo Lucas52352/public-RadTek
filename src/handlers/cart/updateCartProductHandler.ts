@@ -14,7 +14,7 @@ export const updateCartProductHandler = async (req: Request, res: Response) => {
 
         res.status(200).send(productUpdated);
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send(error.message)
     }
 
 }
