@@ -10,7 +10,6 @@ export interface IProduct extends Document {
     description: string;
     stock: number;
     brand: string;
-    cartQuantity: number;
 }
 
 const productSchema = new Schema<IProduct>({
@@ -23,7 +22,6 @@ const productSchema = new Schema<IProduct>({
     description: { type: String, required: true },
     stock: { type: Number, required: true },
     brand: { type: String, required: true },
-    cartQuantity: { type: Number, required: true }
 });
 
 const Product = mongoose.model<IProduct>('products', productSchema);

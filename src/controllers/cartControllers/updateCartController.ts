@@ -3,14 +3,17 @@ import Product, { IProduct } from "../../models/products";
 
 export const updateCartController = async (userId: string, productId: string, cartQuantity: number) => {
 
-    try {
-        if (!productId || !userId || !cartQuantity) throw new Error("Missing data")
+    if (!productId || !userId || !cartQuantity) throw new Error("Missing data")
 
-        const product = await Product.findOne({ _id: productId });
+    const product = await Product.findOne({ _id: productId });
 
-        if (!product) {
-            throw new Error("Product not found");
-        }
+    if (!product) {
+        throw new Error("Product not found");
+    }
+
+    if (product.stock < cartQuantity) {
+        throw new Error('No alcanza el stock disponible')
+    } else {
 
         const updated = await UserModel.findOneAndUpdate(
             { _id: userId, 'cart._id': productId },
@@ -24,9 +27,6 @@ export const updateCartController = async (userId: string, productId: string, ca
         console.log(updated, 'updated controller')
 
         return updated;
-
-    } catch (error) {
-        return error
     }
 
 }
